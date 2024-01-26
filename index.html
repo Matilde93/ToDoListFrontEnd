@@ -36,11 +36,11 @@
                         <img src="images/edit-tool.png" alt="edit" id="edit" v-on:click="openPopup(item.id)">
                         <div id="updatePopup" class="popup" v-if="popupVisible">
                             <div class="popup-content">
-                                <span class="close" v-on:click="closePopup()">&times;</span>
+                                <span id="xToClose" class="close" v-on:click="closePopup()">&times;</span>
                                 <h2 id="popup-header">Update</h2>
                                 <span id="bold">Current task is : </span><span>{{nameUpdate}}</span>
                                 <input type="text" v-model="updatedName" id="updateName" placeholder="Describe your task.." class="form-control" @keyup.enter="UpdateItem(updatedName)">
-                                <button id="saveUpdateButton" class="btn btn-success" v-on:click="UpdateItem(updatedName)">Update</button>
+                                <button id="saveUpdateButton" class="btn btn-success" v-on:click="UpdateItem(updatedName)">Save</button>
                             </div>
                         </div>
                     </td>
