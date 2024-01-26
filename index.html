@@ -14,8 +14,8 @@
 
 <body>
     <div id="app">
-        <div class="jumbotron">
-            <h1>To Do List</h1>
+        <div class="jumbotron" id="jumbotron">
+            <h1 >To Do List</h1>
         </div>
 
         <div class="container">
@@ -27,25 +27,41 @@
                     <th v-on:click="SortByName()">Description</th>
                     <th>Actions</th>
                 </thead>
-                <tr v-for="item in items">
+                <tr v-for="item in items" :class="{ 'strikethrough': item.checked }">
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
-                    <td><button class="btn btn-danger" id="deleteButton"
-                            v-on:click="DeleteItem(item.id)">Delete</button></td>
+                    <td>
+                        <img src="images/delete-button.png" v-on:click="DeleteItem(item.id)" alt="delete-item" id="delete-img">
+                        <input type="checkbox" id="checkbox" v-model="item.checked" class="checkbox">
+                        <img src="images/edit-tool.png" alt="edit" id="edit" v-on:click="openPopup(item.id)">
+                        <div id="updatePopup" class="popup" v-if="popupVisible">
+                            <div class="popup-content">
+                                <span class="close" v-on:click="closePopup()">&times;</span>
+                                <h2 id="popup-header">Update</h2>
+                                <span id="bold">Current task is : </span><span>{{nameUpdate}}</span>
+                                <input type="text" v-model="updatedName" id="updateName" placeholder="Describe your task.." class="form-control" @keyup.enter="UpdateItem(updatedName)">
+                                <button id="saveUpdateButton" class="btn btn-success" v-on:click="UpdateItem(updatedName)">Update</button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input v-model="name" type="text" placeholder="Name" id="name" class="form-control"></td>
+                    <td><input v-model="name" type="text" placeholder="Name" id="name" class="form-control" @keyup.enter="AddItem(name)"></td>
                     <td><button id="addButton" class="btn btn bg-success"
-                            v-on:click="AddItem(name, quantity, unitType)">Add
+                            v-on:click="AddItem(name)">Add
                             Item</button></td>
                 </tr>
             </table>
             <div v-else style="font-style: italic">No such item</div>
         </div>
 
+
+
+        
+
     </div>
-    <script src="index.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
