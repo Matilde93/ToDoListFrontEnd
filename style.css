@@ -62,13 +62,18 @@ button {
 
 /* Modal Content/Box */
 .popup-content {
+    display: flex;
+    flex-direction: column;
     background-color: #fefefe;
-    margin: 30% auto;
-    /* 15% from the top and centered */
+    margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 60%;
+    width: 40%;
     /* Could be more or less, depending on screen size */
+}
+
+.popup-content #xToClose{
+    align-self: flex-end;
 }
 
 /* The Close Button */
@@ -86,7 +91,9 @@ button {
     cursor: pointer;
 }
 
+
 #saveUpdateButton {
+    align-self: flex-end;
     margin-top: 15px;
 }
 
