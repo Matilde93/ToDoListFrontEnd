@@ -18,17 +18,15 @@
             <h1 >To Do List</h1>
         </div>
 
-        <div class="container">
+        <div class="container col-sm-8">
             <div v-if="error" style="color: red">{{error}}</div>
 
             <table id="table" v-if="items.length" class="table table-responsive-sm">
                 <thead>
-                    <th>Id</th>
                     <th v-on:click="SortByName()">Description</th>
                     <th>Actions</th>
                 </thead>
                 <tr v-for="item in items" :class="{ 'strikethrough': item.checked }">
-                    <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>
                         <img src="images/delete.png" v-on:click="DeleteItem(item.id)" alt="delete-item" id="delete-img">
@@ -46,7 +44,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td><input v-model="name" type="text" placeholder="Name" id="name" class="form-control" @keyup.enter="AddItem(name)"></td>
                     <td><button id="addButton" class="btn btn bg-success"
                             v-on:click="AddItem(name)">Add
